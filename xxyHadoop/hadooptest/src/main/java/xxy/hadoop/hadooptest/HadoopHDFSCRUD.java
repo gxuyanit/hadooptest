@@ -19,7 +19,7 @@ import org.junit.Test;
  * @author xuxy
  * 2016年9月21日下午6:02:13
  */
-public class HadoopCRUD
+public class HadoopHDFSCRUD
 {
     private FileSystem fs = null;
     @Before 

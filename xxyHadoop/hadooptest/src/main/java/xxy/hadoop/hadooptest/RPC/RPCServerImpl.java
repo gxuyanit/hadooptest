@@ -13,7 +13,6 @@ public class RPCServerImpl implements RPCServer {
 
     @Override
     public String add(String name) {
-
         return "add" + name +"ceccess!";
     }
 

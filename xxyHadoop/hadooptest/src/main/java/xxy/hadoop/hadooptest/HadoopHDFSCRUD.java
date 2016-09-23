@@ -32,15 +32,15 @@ public class HadoopHDFSCRUD
     }
     @Test
     public void upload() throws IllegalArgumentException, IOException{
-        fs.copyFromLocalFile(new Path("D://unionInfo.txt"), new Path("/test1"));
-    }
-    @Test
-    public void delete() throws IllegalArgumentException, IOException{
-        fs.delete(new Path("/test1/hadoopdata"), false);
+        fs.copyFromLocalFile(new Path("D://hadoopTestData/unionInfo.txt"), new Path("/test1"));
     }
     @Test
     public void update() throws IllegalArgumentException, IOException{
         fs.rename(new Path("/test1/unionInfo.txt"), new Path("/test1/unionRequest.txt"));
+    }
+    @Test
+    public void delete() throws IllegalArgumentException, IOException{
+        fs.delete(new Path("/test1/hadoopdata"), false);
     }
     @Test
     public void query() throws FileNotFoundException, IllegalArgumentException, IOException{

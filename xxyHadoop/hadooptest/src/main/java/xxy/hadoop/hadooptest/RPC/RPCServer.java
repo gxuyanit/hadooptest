@@ -9,7 +9,8 @@ package xxy.hadoop.hadooptest.RPC;
  * @author xuxy
  * @date: 2016年9月22日 下午5:46:52
  */
-public interface RPCServer {
+public interface RPCServer{
+	 public static final long versionID = 33L;
      public String add(String name);
      public boolean delete();
 }

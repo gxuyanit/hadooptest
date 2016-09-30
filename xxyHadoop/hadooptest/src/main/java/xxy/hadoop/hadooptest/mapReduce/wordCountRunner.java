@@ -50,6 +50,9 @@ public class wordCountRunner {
 		wcjob.setMapperClass(wordCountMap.class);
 		// wcjob 要使用那个reduce
 		wcjob.setReducerClass(wordCountReduce.class);
+		//指定Map端局部汇总，因为wordCount逻辑一样，所以直接使用reduce，节省网络带宽
+		wcjob.setCombinerClass(wordCountReduce.class);
+		
 		//mapper类输出的KV数据类型
 		wcjob.setMapOutputKeyClass(Text.class);
 		wcjob.setMapOutputValueClass(LongWritable.class);
@@ -57,10 +60,10 @@ public class wordCountRunner {
 		wcjob.setOutputKeyClass(Text.class);
 		wcjob.setOutputValueClass(LongWritable.class);
 		//指定要处理的原始数据所在路径,不是文件
-		FileInputFormat.setInputPaths(wcjob, "hdfs://xxy01:9000/test1/");
+		FileInputFormat.setInputPaths(wcjob, "F:/hadoopTestData/data");
 		
 		//指定处理之后的结果输出到哪里，路径不是文件
-		FileOutputFormat.setOutputPath(wcjob, new Path("hdfs://xxy01:9000/countOut"));
+		FileOutputFormat.setOutputPath(wcjob, new Path("F:/hadoopTestData/"));
 		
 		//commit
 		boolean res = wcjob.waitForCompletion(false);//boolean 是否在输出台显示进度信息

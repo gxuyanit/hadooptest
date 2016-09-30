@@ -15,7 +15,6 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-import org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /**  
@@ -52,6 +51,9 @@ public class wordCountRunner {
 		wcjob.setReducerClass(wordCountReduce.class);
 		//指定Map端局部汇总，因为wordCount逻辑一样，所以直接使用reduce，节省网络带宽
 		wcjob.setCombinerClass(wordCountReduce.class);
+		//指定自己实现partition（分区规则）
+		wcjob.setPartitionerClass(AreaPartition.class);
+		wcjob.setNumReduceTasks(4);//设置reduce数量，要与partitionner分的数量一致
 		
 		//mapper类输出的KV数据类型
 		wcjob.setMapOutputKeyClass(Text.class);

@@ -32,7 +32,7 @@ public class HadoopHDFSCRUD
     }
     @Test
     public void upload() throws IllegalArgumentException, IOException{
-        fs.copyFromLocalFile(new Path("D://hadoopTestData/unionInfo2.txt"), new Path("/test1"));
+        fs.copyFromLocalFile(new Path("D://hadoopTestData/unionInfo2.txt"), new Path("/"));
     }
     @Test
     public void update() throws IllegalArgumentException, IOException{
